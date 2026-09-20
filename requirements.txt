@@ -1,0 +1,20 @@
+# Core Machine Learning & Data Processing
+numpy
+pandas
+scikit-learn
+joblib
+
+# Deep Learning & Transformers
+torch
+transformers
+accelerate
+tqdm
+
+# Visualization & Evaluation
+matplotlib
+seaborn
+
+# FastAPI Backend Server
+fastapi>=0.100.0
+uvicorn>=0.23.0
+pydantic>=2.0.0

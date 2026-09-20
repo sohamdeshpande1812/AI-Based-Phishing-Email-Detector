@@ -1,0 +1,4 @@
+model_id,model_name,accuracy,precision,recall,f1_score,roc_auc,pr_auc,specificity,false_positive_rate,false_negative_rate,latency_ms,model_size_mb,confusion_matrix
+rf,Random Forest (Baseline ML),100.0,100.0,100.0,100.0,1.0,1.0,100.0,0.0,0.0,0.13,1.86,"{'true_negative': 979, 'false_positive': 0, 'false_negative': 0, 'true_positive': 1021}"
+bilstm,Bi-LSTM (Deep Learning),100.0,100.0,100.0,100.0,1.0,1.0,100.0,0.0,0.0,1.91,8.36,"{'true_negative': 979, 'false_positive': 0, 'false_negative': 0, 'true_positive': 1021}"
+bert,BERT (Transformer SOTA),99.9,99.8,100.0,99.9,1.0,1.0,99.8,0.2,0.0,86.24,256.1,"{'true_negative': 977, 'false_positive': 2, 'false_negative': 0, 'true_positive': 1021}"

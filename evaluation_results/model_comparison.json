@@ -1,0 +1,70 @@
+{
+  "dataset": "Zero-Day Phishing Emails Corpus",
+  "test_samples": 2000,
+  "models": [
+    {
+      "model_id": "rf",
+      "model_name": "Random Forest (Baseline ML)",
+      "accuracy": 100.0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "f1_score": 100.0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "specificity": 100.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.0,
+      "latency_ms": 0.13,
+      "model_size_mb": 1.86,
+      "confusion_matrix": {
+        "true_negative": 979,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_positive": 1021
+      }
+    },
+    {
+      "model_id": "bilstm",
+      "model_name": "Bi-LSTM (Deep Learning)",
+      "accuracy": 100.0,
+      "precision": 100.0,
+      "recall": 100.0,
+      "f1_score": 100.0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "specificity": 100.0,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.0,
+      "latency_ms": 1.91,
+      "model_size_mb": 8.36,
+      "confusion_matrix": {
+        "true_negative": 979,
+        "false_positive": 0,
+        "false_negative": 0,
+        "true_positive": 1021
+      }
+    },
+    {
+      "model_id": "bert",
+      "model_name": "BERT (Transformer SOTA)",
+      "accuracy": 99.9,
+      "precision": 99.8,
+      "recall": 100.0,
+      "f1_score": 99.9,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "specificity": 99.8,
+      "false_positive_rate": 0.2,
+      "false_negative_rate": 0.0,
+      "latency_ms": 86.24,
+      "model_size_mb": 256.1,
+      "confusion_matrix": {
+        "true_negative": 977,
+        "false_positive": 2,
+        "false_negative": 0,
+        "true_positive": 1021
+      }
+    }
+  ],
+  "generated_at": "2026-09-20 19:23:09"
+}
