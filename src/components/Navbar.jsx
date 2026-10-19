@@ -39,7 +39,7 @@ export default function Navbar({
   const ModelIcon = currentModelMeta.icon;
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800/80 bg-white/95 dark:bg-[#080D1A]/95 backdrop-blur-md transition-colors duration-200">
+    <header className="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-700 bg-white/95 dark:bg-[#080D1A]/95 backdrop-blur-md transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-3 sm:gap-4">
         
         {/* Left: Brand Identity & Status */}
@@ -74,7 +74,7 @@ export default function Navbar({
         </div>
 
         {/* Center: Navigation Tabs */}
-        <nav className="hidden md:flex items-center space-x-1 bg-slate-100 dark:bg-[#0E1526] p-1 rounded-xl border border-slate-200 dark:border-slate-800 shrink-0">
+        <nav className="hidden md:flex items-center space-x-1 bg-slate-100 dark:bg-[#0E1526] p-1 rounded-xl border border-slate-200 dark:border-slate-700 shrink-0">
           <button
             onClick={() => onSelectTab('scanner')}
             className={`flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${

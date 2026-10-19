@@ -207,13 +207,13 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
         {/* LEFT COLUMN: ENVELOPE & PAYLOAD INSPECTION FORM (7 Cols)       */}
         {/* ============================================================== */}
         <div className="lg:col-span-7 flex flex-col space-y-4">
-          <div className="rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-200/90 dark:border-slate-800 shadow-xl overflow-hidden transition-all duration-300 cyber-bento-card relative group shadow-slate-900/5 dark:shadow-black/50">
+          <div className="rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-300 dark:border-slate-700 shadow-xl overflow-hidden transition-all duration-300 cyber-bento-card relative group shadow-slate-900/5 dark:shadow-black/50">
             
             {/* Horizontal Cyber Scanline Sweep */}
             <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500/80 to-transparent scanline-bar pointer-events-none opacity-40 group-hover:opacity-100 transition-opacity" />
 
             {/* Header: Envelope & Payload */}
-            <div className="px-5 py-3.5 border-b border-slate-200 dark:border-slate-800/80 flex items-center justify-between bg-slate-50/80 dark:bg-[#121B30]">
+            <div className="px-5 py-3.5 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between bg-slate-50/80 dark:bg-[#121B30]">
               <div className="flex items-center space-x-3">
                 <div className="w-8 h-8 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400">
                   <Mail className="w-4 h-4" />
@@ -239,7 +239,7 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
                   className={`px-2.5 py-1.5 rounded-lg text-xs font-mono font-medium border transition-colors flex items-center space-x-1 ${
                     showLineNumbers
                       ? 'bg-blue-500/15 text-blue-600 dark:text-blue-400 border-blue-500/30'
-                      : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700/80 hover:bg-slate-100 dark:hover:bg-slate-800'
+                      : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800'
                   }`}
                   title="Toggle Line Numbers & Code View"
                 >
@@ -251,7 +251,7 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
                   type="button"
                   onClick={handleClear}
                   disabled={isScanning || (!emailData.body && !emailData.subject && !emailData.senderEmail)}
-                  className="flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:text-rose-600 dark:hover:text-rose-400 hover:border-rose-300 dark:hover:border-rose-900/50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed shadow-xs"
+                  className="flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:text-rose-600 dark:hover:text-rose-400 hover:border-rose-300 dark:hover:border-rose-900/50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed shadow-xs"
                   title="Clear All Fields"
                 >
                   <Trash2 className="w-3.5 h-3.5" />
@@ -278,7 +278,7 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
                       value={emailData.senderName || ''}
                       onChange={(e) => setEmailData({ ...emailData, senderName: e.target.value })}
                       placeholder="e.g. PayPal Security Team"
-                      className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-100/70 hover:bg-slate-100 focus:bg-white dark:bg-[#080D1A] dark:hover:bg-[#0A1122] dark:focus:bg-[#080D1A] border border-slate-300 dark:border-slate-700/80 text-slate-900 dark:text-white text-xs sm:text-sm font-medium placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-xs"
+                      className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-100/70 hover:bg-slate-100 focus:bg-white dark:bg-[#070C18] dark:hover:bg-[#091022] dark:focus:bg-[#070C18] border border-slate-300 dark:border-slate-600/90 text-slate-900 dark:text-white text-xs sm:text-sm font-medium placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-xs"
                     />
                   </div>
                 </div>
@@ -296,7 +296,7 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
                       value={emailData.senderEmail || ''}
                       onChange={(e) => setEmailData({ ...emailData, senderEmail: e.target.value })}
                       placeholder="e.g. security-alert@service-paypal-verify.com"
-                      className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-100/70 hover:bg-slate-100 focus:bg-white dark:bg-[#080D1A] dark:hover:bg-[#0A1122] dark:focus:bg-[#080D1A] border border-slate-300 dark:border-slate-700/80 text-slate-900 dark:text-white text-xs sm:text-sm font-mono placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-xs"
+                      className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-100/70 hover:bg-slate-100 focus:bg-white dark:bg-[#070C18] dark:hover:bg-[#091022] dark:focus:bg-[#070C18] border border-slate-300 dark:border-slate-600/90 text-slate-900 dark:text-white text-xs sm:text-sm font-mono placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-xs"
                     />
                   </div>
                 </div>
@@ -312,7 +312,7 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
                   value={emailData.subject || ''}
                   onChange={(e) => setEmailData({ ...emailData, subject: e.target.value })}
                   placeholder="e.g. URGENT: Your account has been suspended due to suspicious activity"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-100/70 hover:bg-slate-100 focus:bg-white dark:bg-[#080D1A] dark:hover:bg-[#0A1122] dark:focus:bg-[#080D1A] border border-slate-300 dark:border-slate-700/80 text-slate-900 dark:text-white text-xs sm:text-sm font-medium placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-xs"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-100/70 hover:bg-slate-100 focus:bg-white dark:bg-[#070C18] dark:hover:bg-[#091022] dark:focus:bg-[#070C18] border border-slate-300 dark:border-slate-600/90 text-slate-900 dark:text-white text-xs sm:text-sm font-medium placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-xs"
                 />
               </div>
 
@@ -327,12 +327,12 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
                   </span>
                 </div>
 
-                <div className="relative rounded-xl border border-slate-300 dark:border-slate-700/80 bg-slate-100/70 dark:bg-[#080D1A] overflow-hidden focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/20 transition-all shadow-xs">
+                <div className="relative rounded-xl border border-slate-300 dark:border-slate-600/90 bg-slate-100/70 dark:bg-[#070C18] overflow-hidden focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500/20 transition-all shadow-xs">
                   
                   {/* Line numbering gutter */}
                   <div className="flex">
                     {showLineNumbers && (
-                      <div className="select-none py-3.5 pl-3 pr-2 bg-slate-200/60 dark:bg-[#0C1322] border-r border-slate-300 dark:border-slate-700/80 text-right text-slate-400 dark:text-slate-500 font-mono text-xs leading-relaxed shrink-0 w-10 overflow-hidden">
+                      <div className="select-none py-3.5 pl-3 pr-2 bg-slate-200/60 dark:bg-[#0C1322] border-r border-slate-300 dark:border-slate-700 text-right text-slate-400 dark:text-slate-500 font-mono text-xs leading-relaxed shrink-0 w-10 overflow-hidden">
                         {Array.from({ length: Math.max(1, lineCount) }).map((_, idx) => (
                           <div key={idx}>{idx + 1}</div>
                         ))}
@@ -417,10 +417,10 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
         {/* RIGHT COLUMN: THREAT TELEMETRY & VERDICT VIEWPORT (5 Cols)     */}
         {/* ============================================================== */}
         <div className="lg:col-span-5 flex flex-col space-y-4">
-          <div className="rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-200/90 dark:border-slate-800 shadow-xl overflow-hidden min-h-[580px] flex flex-col justify-between transition-all duration-300 cyber-bento-card relative shadow-slate-900/5 dark:shadow-black/50">
+          <div className="rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-300 dark:border-slate-700 shadow-xl overflow-hidden min-h-[580px] flex flex-col justify-between transition-all duration-300 cyber-bento-card relative shadow-slate-900/5 dark:shadow-black/50">
             
             {/* Viewport Header with Live Active Radar Icon */}
-            <div className="px-5 py-3.5 border-b border-slate-200 dark:border-slate-800/80 flex items-center justify-between bg-slate-50/80 dark:bg-[#121B30]">
+            <div className="px-5 py-3.5 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between bg-slate-50/80 dark:bg-[#121B30]">
               <div className="flex items-center space-x-2.5">
                 <div className="relative flex items-center justify-center">
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]" />
@@ -575,7 +575,7 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
 
                   {/* Ready Telemetry Indicators */}
                   <div className="w-full grid grid-cols-2 gap-2 text-left font-mono text-[11px]">
-                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#080D1A] border border-slate-200 dark:border-slate-800 shadow-xs">
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#070C18] border border-slate-300 dark:border-slate-700 shadow-xs">
                       <div className="text-slate-500 dark:text-slate-400 text-[10px] font-semibold">URL DETONATOR</div>
                       <div className="text-emerald-600 dark:text-emerald-400 font-bold mt-1 flex items-center space-x-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_#10b981]" />
@@ -583,7 +583,7 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
                       </div>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#080D1A] border border-slate-200 dark:border-slate-800 shadow-xs">
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#070C18] border border-slate-300 dark:border-slate-700 shadow-xs">
                       <div className="text-slate-500 dark:text-slate-400 text-[10px] font-semibold">COERCION PARSER</div>
                       <div className="text-emerald-600 dark:text-emerald-400 font-bold mt-1 flex items-center space-x-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_#10b981]" />
@@ -591,7 +591,7 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
                       </div>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#080D1A] border border-slate-200 dark:border-slate-800 shadow-xs">
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#070C18] border border-slate-300 dark:border-slate-700 shadow-xs">
                       <div className="text-slate-500 dark:text-slate-400 text-[10px] font-semibold">DOMAIN SPOOF ENGINE</div>
                       <div className="text-emerald-600 dark:text-emerald-400 font-bold mt-1 flex items-center space-x-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_#10b981]" />
@@ -599,7 +599,7 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
                       </div>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#080D1A] border border-slate-200 dark:border-slate-800 shadow-xs">
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-[#070C18] border border-slate-300 dark:border-slate-700 shadow-xs">
                       <div className="text-slate-500 dark:text-slate-400 text-[10px] font-semibold">NEURAL STACK</div>
                       <div className="text-blue-600 dark:text-blue-400 font-bold mt-1 flex items-center space-x-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse shadow-[0_0_6px_#3b82f6]" />

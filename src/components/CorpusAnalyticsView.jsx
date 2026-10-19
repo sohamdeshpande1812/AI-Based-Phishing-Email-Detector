@@ -229,7 +229,7 @@ export default function CorpusAnalyticsView() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* Total Volume */}
-        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-200/90 dark:border-slate-800 shadow-xl space-y-1 cyber-bento-card">
+        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-300 dark:border-slate-700 shadow-xl space-y-1 cyber-bento-card">
           <div className="flex items-center justify-between text-slate-500">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Corpus Volume</span>
             <Database className="w-4 h-4 text-blue-500" />
@@ -243,7 +243,7 @@ export default function CorpusAnalyticsView() {
         </div>
 
         {/* Phishing Distribution */}
-        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-200/90 dark:border-slate-800 shadow-xl space-y-1 cyber-bento-card">
+        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-300 dark:border-slate-700 shadow-xl space-y-1 cyber-bento-card">
           <div className="flex items-center justify-between text-slate-500">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Phishing Samples</span>
             <ShieldAlert className="w-4 h-4 text-rose-500" />
@@ -257,7 +257,7 @@ export default function CorpusAnalyticsView() {
         </div>
 
         {/* Legitimate Distribution */}
-        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-200/90 dark:border-slate-800 shadow-xl space-y-1 cyber-bento-card">
+        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-300 dark:border-slate-700 shadow-xl space-y-1 cyber-bento-card">
           <div className="flex items-center justify-between text-slate-500">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Legitimate Control</span>
             <ShieldCheck className="w-4 h-4 text-emerald-500" />
@@ -271,7 +271,7 @@ export default function CorpusAnalyticsView() {
         </div>
 
         {/* Unseen Holdout */}
-        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-200/90 dark:border-slate-800 shadow-xl space-y-1 cyber-bento-card">
+        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-300 dark:border-slate-700 shadow-xl space-y-1 cyber-bento-card">
           <div className="flex items-center justify-between text-slate-500">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Zero-Day Holdout</span>
             <Filter className="w-4 h-4 text-amber-500" />
@@ -286,7 +286,7 @@ export default function CorpusAnalyticsView() {
       </div>
 
       {/* Sleek Class Balance Progress Bar */}
-      <div className="p-4 rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-200/90 dark:border-slate-800 shadow-xl space-y-2">
+      <div className="p-4 rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-300 dark:border-slate-700 shadow-xl space-y-2">
         <div className="flex items-center justify-between text-xs font-mono">
           <span className="flex items-center space-x-1.5 text-rose-500 font-bold">
             <span className="w-2 h-2 rounded-full bg-rose-500" />

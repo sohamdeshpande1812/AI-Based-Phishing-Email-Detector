@@ -60,7 +60,7 @@ export default function ScenarioPills({ selectedPresetId, onSelectSample }) {
               className={`group relative flex items-center space-x-2.5 px-3 py-2 rounded-xl text-xs font-medium border transition-all duration-200 whitespace-nowrap shrink-0 shadow-xs cursor-pointer ${
                 isSelected
                   ? 'bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/30 ring-2 ring-blue-500/40'
-                  : `bg-white dark:bg-[#111728] text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-800 ${tagInfo.hoverBorder} ${tagInfo.glow} hover:-translate-y-0.5 hover:dark:bg-[#151D33] hover:dark:border-slate-700`
+                  : `bg-white dark:bg-[#111728] text-slate-800 dark:text-slate-200 border-slate-300 dark:border-slate-700 ${tagInfo.hoverBorder} ${tagInfo.glow} hover:-translate-y-0.5 hover:dark:bg-[#151D33] hover:dark:border-slate-600`
               }`}
             >
               {/* Dot indicator */}

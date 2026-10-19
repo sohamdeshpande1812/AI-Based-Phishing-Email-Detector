@@ -33,7 +33,7 @@
 
 /* Enterprise Glassmorphism Cards */
 .glass-card {
-  @apply bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-xl;
+  @apply bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-300 dark:border-slate-700 shadow-xl;
 }
 
 .glass-card-subtle {
