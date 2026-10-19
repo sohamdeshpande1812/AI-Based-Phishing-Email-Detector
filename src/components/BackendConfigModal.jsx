@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Server, Check, AlertCircle, Code } from 'lucide-react';
-import { testBackendConnection } from '../services/apiService';
+import { testBackendConnection, DEFAULT_BACKEND_URL } from '../services/apiService';
 
 export default function BackendConfigModal({
   isOpen,
@@ -9,7 +9,7 @@ export default function BackendConfigModal({
   onSave
 }) {
   const [mode, setMode] = useState(backendConfig.mode || 'custom');
-  const [url, setUrl] = useState(backendConfig.url || '/api/analyze');
+  const [url, setUrl] = useState(backendConfig.url || DEFAULT_BACKEND_URL);
   const [testing, setTesting] = useState(false);
   const [testResult, setTestResult] = useState(null);
   const [activeTab, setActiveTab] = useState('settings'); // 'settings' | 'snippet'
@@ -147,7 +147,7 @@ export default function BackendConfigModal({
                     type="url"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
-                    placeholder="http://localhost:8001/api/analyze"
+                    placeholder={DEFAULT_BACKEND_URL}
                     className="flex-1 px-3 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-900 dark:text-slate-200 font-mono placeholder:text-slate-400 dark:placeholder:text-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                   />
                   <button

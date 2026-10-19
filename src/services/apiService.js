@@ -6,14 +6,18 @@ const STORAGE_KEYS = {
   ACTIVE_MODEL: 'phishshield_active_model',
 };
 
+export const DEFAULT_BACKEND_URL =
+  import.meta.env.VITE_BACKEND_URL ||
+  'https://ai-based-phishing-email-detector-embr.onrender.com/api/analyze';
+
 /**
- * Get current backend configuration - defaults to live custom FastAPI backend
+ * Get current backend configuration - defaults to live Render FastAPI backend
  */
 export function getBackendConfig() {
   const mode = localStorage.getItem(STORAGE_KEYS.BACKEND_MODE) || 'custom'; // 'custom' | 'builtin'
   let url = localStorage.getItem(STORAGE_KEYS.BACKEND_URL);
-  if (!url || url === 'http://localhost:8001/api/analyze' || url === 'http://localhost:8000/api/analyze') {
-    url = '/api/analyze';
+  if (!url || url === 'http://localhost:8001/api/analyze' || url === 'http://localhost:8000/api/analyze' || url === '/api/analyze' || url.trim() === '') {
+    url = DEFAULT_BACKEND_URL;
   }
   const activeModel = localStorage.getItem(STORAGE_KEYS.ACTIVE_MODEL) || 'auto'; // 'auto' | 'rf' | 'bilstm' | 'bert'
   return { mode, url, activeModel };
@@ -33,11 +37,14 @@ export function saveBackendConfig(mode, url, activeModel) {
  */
 export async function testBackendConnection(url) {
   try {
-    const baseUrl = url.replace(/\/analyze$/, '');
-    const response = await fetch(`${baseUrl}/health`, {
+    const cleanUrl = (url || DEFAULT_BACKEND_URL).trim().replace(/\/+$/, '');
+    const baseUrl = cleanUrl.endsWith('/analyze') ? cleanUrl.replace(/\/analyze$/, '') : cleanUrl;
+    const healthUrl = baseUrl.endsWith('/api') ? `${baseUrl}/health` : `${baseUrl}/api/health`;
+    
+    const response = await fetch(healthUrl, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
-      signal: AbortSignal.timeout(3500)
+      signal: AbortSignal.timeout(10000)
     });
     if (response.ok) {
       const data = await response.json();
@@ -54,12 +61,15 @@ export async function testBackendConnection(url) {
  */
 export async function fetchBenchmarkData() {
   const { url } = getBackendConfig();
-  const baseUrl = url.replace(/\/analyze$/, '');
+  const cleanUrl = (url || DEFAULT_BACKEND_URL).trim().replace(/\/+$/, '');
+  const baseUrl = cleanUrl.endsWith('/analyze') ? cleanUrl.replace(/\/analyze$/, '') : cleanUrl;
+  const benchmarkUrl = baseUrl.endsWith('/api') ? `${baseUrl}/benchmark` : `${baseUrl}/api/benchmark`;
+  
   try {
-    const response = await fetch(`${baseUrl}/benchmark`, {
+    const response = await fetch(benchmarkUrl, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
-      signal: AbortSignal.timeout(4000)
+      signal: AbortSignal.timeout(10000)
     });
     if (response.ok) {
       return await response.json();

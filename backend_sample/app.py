@@ -129,6 +129,7 @@ def root():
     }
 
 @app.get("/api/health")
+@app.get("/health")
 def health_check():
     rf_ready = os.path.exists(RF_PATH)
     bilstm_ready = os.path.exists(BILSTM_MODEL_PATH)
