@@ -42,6 +42,7 @@ export default function EmailInspectionWorkspace({
   onAnalyze,
   isScanning,
   analysisResult,
+  scanError,
   onSelectSample,
   onResetScan,
   activeModel
@@ -541,8 +542,38 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
                 </div>
               )}
 
-              {/* STATE 2: STANDBY (Tactical Cyber HUD Radar & Readiness Status) */}
-              {!isScanning && !analysisResult && (
+              {/* STATE 2A: SERVER ERROR / UNREACHABLE */}
+              {!isScanning && !analysisResult && scanError && (
+                <div className="flex-1 flex flex-col items-center justify-center py-6 space-y-4 text-center animate-in fade-in duration-300 px-4">
+                  <div className="w-16 h-16 rounded-2xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-500 shadow-lg shadow-rose-500/20">
+                    <AlertTriangle className="w-8 h-8" />
+                  </div>
+                  <div className="space-y-2 max-w-md">
+                    <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-mono font-bold uppercase tracking-wider">
+                      <span>AI Model Microservice Offline</span>
+                    </div>
+                    <h4 className="text-sm font-extrabold text-slate-900 dark:text-white">
+                      Inference Request Failed
+                    </h4>
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+                      {scanError}
+                    </p>
+                    <div className="pt-2">
+                      <button
+                        type="button"
+                        onClick={onAnalyze}
+                        className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-md shadow-blue-500/25 transition-all inline-flex items-center space-x-1.5 cursor-pointer"
+                      >
+                        <RefreshCw className="w-3.5 h-3.5" />
+                        <span>Retry AI Inference</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* STATE 2B: STANDBY (Tactical Cyber HUD Radar & Readiness Status) */}
+              {!isScanning && !analysisResult && !scanError && (
                 <div className="flex-1 flex flex-col items-center justify-center py-6 space-y-5 text-center animate-in fade-in duration-300">
                   
                   {/* Standby Active Tactical Reticle */}
@@ -566,10 +597,10 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
                   <div className="space-y-1.5 max-w-sm">
                     <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-600 dark:text-emerald-400 text-xs font-mono font-bold uppercase tracking-wider">
                       <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                      <span>STANDBY // THREAT ENGINE ARMED</span>
+                      <span>STANDBY // AI MODELS ARMED</span>
                     </div>
                     <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
-                      Multi-vector zero-day protection is ready. Select a scenario preset above or paste an email on the left and click <span className="text-blue-600 dark:text-blue-400 font-semibold font-mono">"Run AI Threat Analysis"</span>.
+                      PyTorch & Scikit-Learn zero-day defense pipeline is ready. Select a scenario preset or paste an email and click <span className="text-blue-600 dark:text-blue-400 font-semibold font-mono">"Run AI Threat Analysis"</span>.
                     </p>
                   </div>
 

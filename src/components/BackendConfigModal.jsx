@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Server, Check, AlertCircle, Code, RotateCcw } from 'lucide-react';
+import { X, Server, Check, AlertCircle, Code, RotateCcw, Cpu, Sparkles } from 'lucide-react';
 import { testBackendConnection, DEFAULT_BACKEND_URL } from '../services/apiService';
 
 function sanitizeEndpoint(endpoint) {
@@ -15,7 +15,6 @@ export default function BackendConfigModal({
   backendConfig,
   onSave
 }) {
-  const [mode, setMode] = useState(backendConfig?.mode || 'custom');
   const [url, setUrl] = useState(sanitizeEndpoint(backendConfig?.url));
   const [testing, setTesting] = useState(false);
   const [testResult, setTestResult] = useState(null);
@@ -23,7 +22,6 @@ export default function BackendConfigModal({
 
   useEffect(() => {
     if (isOpen) {
-      setMode(backendConfig?.mode || 'custom');
       setUrl(sanitizeEndpoint(backendConfig?.url));
       setTestResult(null);
     }
@@ -40,26 +38,26 @@ export default function BackendConfigModal({
   };
 
   const handleSave = () => {
-    onSave(mode, url);
+    onSave('custom', url);
     onClose();
   };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 backdrop-blur-sm p-4 animate-in fade-in duration-150 transition-colors duration-200">
-      <div className="w-full max-w-xl bg-white dark:bg-[#0F172A] border border-slate-200 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden transition-colors duration-200">
+      <div className="w-full max-w-xl bg-white dark:bg-[#0F172A] border border-slate-300 dark:border-slate-700 rounded-2xl shadow-2xl overflow-hidden transition-colors duration-200">
         
         {/* Modal Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-slate-900/60">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/60">
           <div className="flex items-center space-x-2.5">
             <div className="w-8 h-8 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400">
               <Server className="w-4 h-4" />
             </div>
             <div>
               <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
-                Inference Gateway & API Settings
+                AI Model Microservice Gateway
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                Configure FastAPI backend microservice or client-side fallback
+                Connected exclusively to PyTorch & Scikit-Learn AI inference models
               </p>
             </div>
           </div>
@@ -82,7 +80,7 @@ export default function BackendConfigModal({
                 : 'border-transparent text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
             }`}
           >
-            Engine Configuration
+            AI Engine Gateway
           </button>
           <button
             onClick={() => setActiveTab('snippet')}
@@ -101,62 +99,29 @@ export default function BackendConfigModal({
         <div className="p-6 space-y-5">
           {activeTab === 'settings' ? (
             <>
-              {/* Engine Mode Selection */}
-              <div className="space-y-3">
-                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
-                  Select Active Detection Engine
-                </label>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  
-                  {/* Built-in Engine Card */}
-                  <div
-                    onClick={() => setMode('builtin')}
-                    className={`p-3.5 rounded-xl border cursor-pointer transition-all ${
-                      mode === 'builtin'
-                        ? 'bg-blue-50 border-blue-500 text-slate-900 dark:bg-blue-600/10 dark:text-white'
-                        : 'bg-slate-50 dark:bg-slate-950/40 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-700'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs font-semibold text-slate-900 dark:text-slate-200">
-                        Built-in Fallback Engine
-                      </span>
-                      {mode === 'builtin' && <Check className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
-                    </div>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                      Instant client-side multi-vector NLP, urgency & domain heuristic engine.
-                    </p>
+              {/* Active AI Stack Badge Card */}
+              <div className="p-4 rounded-xl bg-blue-50/80 dark:bg-[#070C18] border border-blue-200 dark:border-blue-500/30 space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <Sparkles className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                    <span className="text-xs font-bold text-slate-900 dark:text-white">
+                      Zero-Day AI Model Stack Active
+                    </span>
                   </div>
-
-                  {/* Custom Backend Card */}
-                  <div
-                    onClick={() => setMode('custom')}
-                    className={`p-3.5 rounded-xl border cursor-pointer transition-all ${
-                      mode === 'custom'
-                        ? 'bg-blue-50 border-blue-500 text-slate-900 dark:bg-blue-600/10 dark:text-white'
-                        : 'bg-slate-50 dark:bg-slate-950/40 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-700'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-xs font-semibold text-slate-900 dark:text-slate-200">
-                        FastAPI ML Microservice (Recommended)
-                      </span>
-                      {mode === 'custom' && <Check className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
-                    </div>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                      Connects directly to PyTorch & Scikit-Learn trained models (RF, Bi-LSTM, BERT).
-                    </p>
-                  </div>
-
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 font-semibold">
+                    100% Neural & ML
+                  </span>
                 </div>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+                  All email payloads are evaluated solely by our trained machine learning models: <strong className="text-blue-600 dark:text-blue-400">BERT Transformer</strong>, <strong className="text-blue-600 dark:text-blue-400">Bi-LSTM Neural Network</strong>, and <strong className="text-blue-600 dark:text-blue-400">Random Forest</strong>.
+                </p>
               </div>
 
               {/* Custom API URL Input */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
-                    API Endpoint URL
+                    FastAPI Endpoint URL
                   </label>
                   <button
                     type="button"
@@ -164,7 +129,7 @@ export default function BackendConfigModal({
                     className="inline-flex items-center space-x-1 text-[11px] font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
                   >
                     <RotateCcw className="w-3 h-3" />
-                    <span>Reset to Render Cloud Backend</span>
+                    <span>Reset to Default Render Cloud</span>
                   </button>
                 </div>
                 <div className="flex space-x-2">
@@ -173,12 +138,12 @@ export default function BackendConfigModal({
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
                     placeholder={DEFAULT_BACKEND_URL}
-                    className="flex-1 px-3 py-2 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-900 dark:text-slate-200 font-mono placeholder:text-slate-400 dark:placeholder:text-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    className="flex-1 px-3 py-2 rounded-lg bg-white dark:bg-[#070C18] border border-slate-300 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-slate-200 font-mono placeholder:text-slate-400 dark:placeholder:text-slate-600 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                   />
                   <button
                     onClick={handleTest}
                     disabled={testing || !url}
-                    className="px-3.5 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-medium border border-slate-200 dark:border-slate-700 transition-colors disabled:opacity-50"
+                    className="px-3.5 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-medium border border-slate-300 dark:border-slate-700 transition-colors disabled:opacity-50"
                   >
                     {testing ? 'Testing...' : 'Test Connection'}
                   </button>
@@ -211,9 +176,9 @@ export default function BackendConfigModal({
           ) : (
             <div className="space-y-3">
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                The FastAPI microservice provides high-performance endpoints:
+                The FastAPI microservice provides high-performance AI inference endpoints:
               </p>
-              <pre className="p-3.5 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 font-mono text-xs text-blue-700 dark:text-blue-300 overflow-x-auto max-h-72">
+              <pre className="p-3.5 rounded-lg bg-slate-50 dark:bg-[#070C18] border border-slate-300 dark:border-slate-700 font-mono text-xs text-blue-700 dark:text-blue-300 overflow-x-auto max-h-72">
 {`# Backend Endpoints
 GET  /api/health     # Health check & model status
 GET  /api/models     # Model list & metadata
@@ -235,7 +200,7 @@ POST /api/analyze
         </div>
 
         {/* Modal Footer */}
-        <div className="px-6 py-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/50 flex items-center justify-end space-x-3">
+        <div className="px-6 py-4 border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950/50 flex items-center justify-end space-x-3">
           <button
             onClick={onClose}
             className="px-4 py-2 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 transition-colors"

@@ -74,8 +74,7 @@ mini project/
 │   ├── data/
 │   │   └── sampleEmails.js        # Realistic phishing & legitimate test datasets
 │   ├── services/
-│   │   ├── analyzerEngine.js      # Multi-vector heuristic & NLP detection engine
-│   │   └── apiService.js          # API connector with dual-mode support
+│   │   └── apiService.js          # Direct FastAPI AI inference client (BERT, Bi-LSTM, RF)
 │   └── components/
 │       ├── Navbar.jsx             # Top bar with sample switcher & API modal trigger
 │       ├── HeroBanner.jsx         # Project hero header with security pills

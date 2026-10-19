@@ -46,6 +46,7 @@ export default function App() {
 
   const [isScanning, setIsScanning] = useState(false);
   const [analysisResult, setAnalysisResult] = useState(null);
+  const [scanError, setScanError] = useState(null);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [backendConfig, setBackendConfig] = useState(getBackendConfig());
   const [activeModel, setActiveModel] = useState(backendConfig.activeModel || 'auto');
@@ -56,12 +57,14 @@ export default function App() {
 
     setIsScanning(true);
     setAnalysisResult(null);
+    setScanError(null);
 
     try {
       const result = await runEmailAnalysis(emailData, activeModel);
       setAnalysisResult(result);
     } catch (error) {
       console.error('Analysis error:', error);
+      setScanError(error.message || 'AI Model Server unreachable. Please retry in a moment.');
     } finally {
       setIsScanning(false);
     }
@@ -77,11 +80,13 @@ export default function App() {
       urls: sample.urls || []
     });
     setAnalysisResult(null);
+    setScanError(null);
   };
 
   // Reset scan and return to input screen
   const handleReset = () => {
     setAnalysisResult(null);
+    setScanError(null);
     setViewMode('workspace');
   };
 
@@ -135,6 +140,7 @@ export default function App() {
                   onAnalyze={handleAnalyze}
                   isScanning={isScanning}
                   analysisResult={analysisResult}
+                  scanError={scanError}
                   onSelectSample={handleSelectSample}
                   onResetScan={handleReset}
                   activeModel={activeModel}
