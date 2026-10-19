@@ -4,13 +4,43 @@
 
 @layer base {
   body {
-    @apply bg-[#edf0f5] text-slate-900 dark:bg-[#0b0f19] dark:text-slate-100 transition-colors duration-150 antialiased overflow-x-hidden;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    @apply bg-slate-100 text-slate-900 dark:bg-[#090D16] dark:text-slate-100 transition-colors duration-200 antialiased overflow-x-hidden font-sans;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
 
-/* Crisp Enterprise Scrollbar */
+/* Background Cyber Grid */
+.cyber-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+}
+
+.dark .cyber-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(30, 41, 59, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 41, 59, 0.45) 1px, transparent 1px);
+}
+
+/* Subtle Radial Background Glow */
+.cyber-glow-bg {
+  background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 65%),
+              radial-gradient(circle at 100% 50%, rgba(244, 63, 94, 0.04) 0%, transparent 50%),
+              radial-gradient(circle at 0% 100%, rgba(16, 185, 129, 0.04) 0%, transparent 50%);
+}
+
+/* Enterprise Glassmorphism Cards */
+.glass-card {
+  @apply bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-xl;
+}
+
+.glass-card-subtle {
+  @apply bg-white/80 dark:bg-[#0F172A]/60 backdrop-blur-sm border border-slate-200/80 dark:border-white/5;
+}
+
+/* Crisp Technical Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -20,24 +50,50 @@
 }
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
-  border-radius: 3px;
+  border-radius: 9999px;
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: #1f2937;
+  background: #1e293b;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #374151;
+  background: #334155;
 }
 
-/* Depth & Card Elevation Utilities */
-.light-card-shadow {
-  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.06);
+/* Animated Radar Sweep */
+@keyframes radar-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.dark .light-card-shadow {
-  box-shadow: none;
+.radar-sweep-cone {
+  background: conic-gradient(from 0deg at 50% 50%, rgba(59, 130, 246, 0.35) 0deg, rgba(59, 130, 246, 0) 65deg, transparent 360deg);
+  animation: radar-spin 3s linear infinite;
 }
+
+/* Scanline Animation */
+@keyframes scanline-anim {
+  0% {
+    top: 0%;
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0.2;
+  }
+}
+
+.scanline-bar {
+  animation: scanline-anim 2.5s ease-in-out infinite;
+}
+
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Eye, Info, AlertTriangle } from 'lucide-react';
+import { Eye, Info, AlertTriangle, Sparkles } from 'lucide-react';
 
 export default function EmailXRayView({ emailData, highlights = [] }) {
   const [selectedHighlight, setSelectedHighlight] = useState(null);
@@ -34,16 +34,16 @@ export default function EmailXRayView({ emailData, highlights = [] }) {
           <mark
             key={index}
             onClick={() => setSelectedHighlight(match)}
-            className={`cursor-pointer px-1.5 py-0.5 mx-0.5 rounded font-medium transition-colors inline-flex items-center text-xs ${
+            className={`cursor-pointer px-1.5 py-0.5 mx-0.5 rounded-md font-mono font-medium transition-all inline-flex items-center text-xs ${
               isHigh
                 ? isSelected
-                  ? 'bg-rose-600 text-white'
-                  : 'bg-rose-100 text-rose-800 border border-rose-300 hover:bg-rose-200 dark:bg-rose-500/20 dark:text-rose-300 dark:border-rose-500/40 dark:hover:bg-rose-500/30'
+                  ? 'bg-rose-600 text-white shadow-md shadow-rose-500/30'
+                  : 'bg-rose-500/20 text-rose-700 dark:text-rose-300 border border-rose-500/40 hover:bg-rose-500/30'
                 : isSelected
-                ? 'bg-amber-500 text-white'
-                : 'bg-amber-100 text-amber-800 border border-amber-300 hover:bg-amber-200 dark:bg-amber-500/20 dark:text-amber-300 dark:border-amber-500/40 dark:hover:bg-amber-500/30'
+                ? 'bg-amber-500 text-white shadow-md shadow-amber-500/30'
+                : 'bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-500/40 hover:bg-amber-500/30'
             }`}
-            title="Click to view threat explanation"
+            title="Click to view ML threat rationale"
           >
             <span>{part}</span>
             <AlertTriangle className="w-3 h-3 ml-1 opacity-80" />
@@ -56,73 +56,74 @@ export default function EmailXRayView({ emailData, highlights = [] }) {
   };
 
   return (
-    <div className="space-y-4 transition-colors duration-150">
+    <div className="space-y-4 transition-colors duration-200">
       
       {/* Header Controls */}
-      <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+      <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-white/10">
         <div className="flex items-center space-x-2">
-          <Eye className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
-            Semantic Content X-Ray
+          <Eye className="w-4 h-4 text-blue-500" />
+          <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200">
+            Semantic Content Threat X-Ray
           </h4>
-          <span className="text-xs font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 shadow-sm">
-            {highlights.length} Flagged Phrase(s)
+          <span className="text-xs font-mono px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10 shadow-xs">
+            {highlights.length} Token(s) Flagged
           </span>
         </div>
 
         <button
+          type="button"
           onClick={() => setShowHighlights(!showHighlights)}
-          className="text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white px-2.5 py-1 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-colors shadow-sm"
+          className="text-xs font-mono font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white px-2.5 py-1 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/20 transition-all shadow-xs cursor-pointer"
         >
-          {showHighlights ? 'Hide Highlights' : 'Show Highlights'}
+          {showHighlights ? 'Hide Tokens' : 'Show Tokens'}
         </button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         
         {/* Email Content Box */}
-        <div className="lg:col-span-2 p-4 rounded-xl bg-white dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-relaxed overflow-x-auto max-h-96 overflow-y-auto shadow-sm">
+        <div className="lg:col-span-2 p-4 rounded-xl bg-slate-50 dark:bg-[#090D16] border border-slate-200 dark:border-white/10 text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-relaxed overflow-x-auto max-h-96 overflow-y-auto shadow-inner">
           {emailData.subject && (
-            <div className="pb-3 mb-3 border-b border-slate-200 dark:border-slate-800 text-xs font-medium text-slate-600 dark:text-slate-400">
-              <span className="text-slate-900 dark:text-slate-200 font-semibold">Subject:</span> {emailData.subject}
+            <div className="pb-3 mb-3 border-b border-slate-200 dark:border-white/10 text-xs font-medium text-slate-600 dark:text-slate-400">
+              <span className="text-slate-900 dark:text-slate-100 font-bold">Subject:</span> {emailData.subject}
             </div>
           )}
-          <div className="whitespace-pre-wrap font-sans">
+          <div className="whitespace-pre-wrap font-mono text-xs leading-relaxed">
             {renderHighlightedText()}
           </div>
         </div>
 
         {/* Threat Insight Sidebar */}
-        <div className="p-4 rounded-xl bg-white dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 flex flex-col justify-between shadow-sm">
+        <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#090D16] border border-slate-200 dark:border-white/10 flex flex-col justify-between shadow-xs">
           <div>
-            <div className="flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-3 pb-2 border-b border-slate-200 dark:border-slate-800">
-              <Info className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-              <span>Context Details</span>
+            <div className="flex items-center space-x-2 text-xs font-mono font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-3 pb-2 border-b border-slate-200 dark:border-white/10">
+              <Info className="w-4 h-4 text-blue-500" />
+              <span>Token Telemetry</span>
             </div>
 
             {selectedHighlight ? (
               <div className="space-y-3 animate-in fade-in duration-100">
                 <div>
-                  <span className="text-[10px] uppercase font-semibold text-slate-500 dark:text-slate-400">Flagged Phrase:</span>
-                  <div className="p-2 rounded bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-mono text-rose-600 dark:text-rose-400 mt-1 break-words">
+                  <span className="text-[10px] font-mono uppercase font-bold text-slate-500">Flagged Phrase:</span>
+                  <div className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 text-xs font-mono text-rose-500 mt-1 break-words">
                     "{selectedHighlight.text}"
                   </div>
                 </div>
 
                 <div>
-                  <span className="text-[10px] uppercase font-semibold text-slate-500 dark:text-slate-400">Threat Category:</span>
-                  <div className="text-xs font-semibold text-slate-800 dark:text-slate-200 mt-0.5">
+                  <span className="text-[10px] font-mono uppercase font-bold text-slate-500">Threat Category:</span>
+                  <div className="text-xs font-bold text-slate-800 dark:text-slate-200 mt-0.5">
                     {selectedHighlight.category}
                   </div>
                 </div>
 
                 <div>
-                  <span className="text-[10px] uppercase font-semibold text-slate-500 dark:text-slate-400">Severity:</span>
+                  <span className="text-[10px] font-mono uppercase font-bold text-slate-500">Severity Level:</span>
                   <div className="mt-1">
-                    <span className={`px-2 py-0.5 rounded text-[10px] uppercase font-semibold ${
+                    <span className={`px-2 py-0.5 rounded-md text-[10px] font-mono uppercase font-extrabold border ${
                       selectedHighlight.severity === 'high'
-                        ? 'bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-500/10 dark:text-rose-400 dark:border-rose-500/20'
-                        : 'bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20'
+                        ? 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20'
+                        : 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20'
                     }`}>
                       {selectedHighlight.severity} Risk
                     </span>
@@ -130,29 +131,29 @@ export default function EmailXRayView({ emailData, highlights = [] }) {
                 </div>
 
                 <div>
-                  <span className="text-[10px] uppercase font-semibold text-slate-500 dark:text-slate-400">ML Justification:</span>
-                  <p className="text-xs text-slate-700 dark:text-slate-300 mt-1 leading-relaxed bg-slate-50 dark:bg-slate-900 p-2.5 rounded border border-slate-200 dark:border-slate-800">
+                  <span className="text-[10px] font-mono uppercase font-bold text-slate-500">ML Justification:</span>
+                  <p className="text-xs text-slate-700 dark:text-slate-300 mt-1 leading-relaxed bg-white dark:bg-slate-900 p-2.5 rounded-lg border border-slate-200 dark:border-white/10 font-sans">
                     {selectedHighlight.reason}
                   </p>
                 </div>
               </div>
             ) : (
-              <div className="text-center py-8 text-slate-400">
-                <Info className="w-6 h-6 text-slate-400 dark:text-slate-500 mx-auto mb-2" />
-                <p className="text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
-                  Click any highlighted phrase
-                </p>
-                <p className="text-xs text-slate-500">
-                  Select phrases in the email body to inspect the underlying NLP risk justification.
-                </p>
+              <div className="text-center py-8 text-slate-400 text-xs space-y-2">
+                <Sparkles className="w-6 h-6 text-slate-400 mx-auto opacity-40" />
+                <p>Click on any highlighted token in the text box to inspect its specific threat rationale.</p>
               </div>
             )}
           </div>
 
-          <div className="pt-3 mt-3 border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400 flex items-center justify-between">
-            <span className="text-rose-600 dark:text-rose-400">● Red: High Urgency</span>
-            <span className="text-amber-600 dark:text-amber-400">● Amber: Deceptive CTA</span>
-          </div>
+          {selectedHighlight && (
+            <button
+              type="button"
+              onClick={() => setSelectedHighlight(null)}
+              className="mt-4 w-full py-1.5 rounded-lg text-xs font-mono font-medium text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/10 transition-colors"
+            >
+              Clear Selection
+            </button>
+          )}
         </div>
 
       </div>

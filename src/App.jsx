@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HeroBanner from './components/HeroBanner';
-import EmailInputSection from './components/EmailInputSection';
+import EmailInspectionWorkspace from './components/EmailInspectionWorkspace';
 import ResultDashboard from './components/ResultDashboard';
 import ModelBenchmarksView from './components/ModelBenchmarksView';
 import CorpusAnalyticsView from './components/CorpusAnalyticsView';
@@ -12,8 +12,9 @@ import { runEmailAnalysis, getBackendConfig, saveBackendConfig } from './service
 
 export default function App() {
   const [currentTab, setCurrentTab] = useState('scanner'); // 'scanner' | 'benchmarks' | 'corpus'
+  const [viewMode, setViewMode] = useState('workspace'); // 'workspace' | 'full-dashboard'
   
-  // Theme state: 'dark' | 'light'
+  // Theme state: default to enterprise dark mode
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('phishshield_theme');
     if (saved) return saved;
@@ -80,6 +81,7 @@ export default function App() {
   // Reset scan and return to input screen
   const handleReset = () => {
     setAnalysisResult(null);
+    setViewMode('workspace');
   };
 
   // Save backend configuration
@@ -95,12 +97,12 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#edf0f5] dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-blue-600 selection:text-white transition-colors duration-150">
+    <div className="min-h-screen bg-slate-100 dark:bg-[#090D16] text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-blue-600 selection:text-white transition-colors duration-200 cyber-glow-bg cyber-grid-pattern">
       
-      {/* Enterprise Navigation Bar with Light/Dark Switcher */}
+      {/* Enterprise Top Navigation Bar */}
       <Navbar
         currentTab={currentTab}
-        onSelectTab={setCurrentTab}
+        onSelectTab={(tab) => { setCurrentTab(tab); setViewMode('workspace'); }}
         backendConfig={backendConfig}
         activeModel={activeModel}
         onSelectModel={handleSelectModel}
@@ -113,23 +115,26 @@ export default function App() {
       {/* Main Workspace Area */}
       <main className="flex-1 pb-12">
         {currentTab === 'scanner' && (
-          !analysisResult ? (
-            <div className="space-y-4">
-              <HeroBanner />
-              <EmailInputSection
-                emailData={emailData}
-                setEmailData={setEmailData}
-                onAnalyze={handleAnalyze}
-                isScanning={isScanning}
-                onSelectSample={handleSelectSample}
-              />
-            </div>
-          ) : (
+          viewMode === 'full-dashboard' && analysisResult ? (
             <ResultDashboard
               result={analysisResult}
               emailData={emailData}
               onResetScan={handleReset}
             />
+          ) : (
+            <div className="space-y-4">
+              <HeroBanner />
+              <EmailInspectionWorkspace
+                emailData={emailData}
+                setEmailData={setEmailData}
+                onAnalyze={handleAnalyze}
+                isScanning={isScanning}
+                analysisResult={analysisResult}
+                onSelectSample={handleSelectSample}
+                onResetScan={handleReset}
+                activeModel={activeModel}
+              />
+            </div>
           )
         )}
 
@@ -153,7 +158,7 @@ export default function App() {
         onSave={handleSaveBackend}
       />
 
-      {/* Footer */}
+      {/* Modernized Production Footer */}
       <Footer />
 
     </div>

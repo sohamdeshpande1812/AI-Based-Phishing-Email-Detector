@@ -3,6 +3,7 @@ export const sampleEmails = [
     id: 'phishing-paypal',
     name: 'PayPal - Urgent Account Suspension',
     type: 'phishing',
+    threatTag: 'CRITICAL',
     badge: 'High Risk Phishing',
     senderName: 'PayPal Security Team',
     senderEmail: 'security-alert@service-paypal-verify.com',
@@ -29,6 +30,7 @@ Case ID: PP-99482-SEC`,
     id: 'phishing-hr-payroll',
     name: 'HR Dept - Mandatory Direct Deposit Update',
     type: 'phishing',
+    threatTag: 'CRITICAL',
     badge: 'High Risk Phishing',
     senderName: 'Human Resources Management',
     senderEmail: 'hr-payroll-notice@internal-company-portal.net',
@@ -53,6 +55,7 @@ Global Workplace Services`,
     id: 'phishing-microsoft-365',
     name: 'Microsoft 365 - Password Expiration Notice',
     type: 'phishing',
+    threatTag: 'CRITICAL',
     badge: 'Credential Harvester',
     senderName: 'Microsoft Office 365 Admin',
     senderEmail: 'admin-notification@micosoft-online-support.com',
@@ -73,10 +76,33 @@ One Microsoft Way, Redmond, WA`,
     urls: ['http://192.241.144.78/ms-office-auth/keep-password.html']
   },
   {
+    id: 'suspicious-unverified-vendor',
+    name: 'Apex Logistics - Pending Invoice & Remittance',
+    type: 'suspicious',
+    threatTag: 'SUSPICIOUS',
+    badge: 'Anomalous Gateway',
+    senderName: 'Billing Desk | Apex Shipments',
+    senderEmail: 'invoicing@apex-global-dispatch.top',
+    subject: 'Overdue Remittance Notice: Invoice #INV-88219 (Payment Due)',
+    body: `Attention Accounts Payable,
+
+Our records indicate that balance remittance for invoice #INV-88219 ($1,420.00 USD) remains outstanding past our contractual net-30 terms.
+
+Kindly review the updated wire transfer details and transaction receipt hosted on our portal before Friday to avoid late administrative surcharges:
+http://apex-freight-billing.download/remittance-advice-88219
+
+If this payment was executed recently, please forward confirmation.
+
+Apex Global Freight Logistics
+Accounting Department`,
+    urls: ['http://apex-freight-billing.download/remittance-advice-88219']
+  },
+  {
     id: 'legitimate-meeting',
     name: 'Google Meet - Team Sprint Planning',
     type: 'legitimate',
-    badge: 'Legitimate & Safe',
+    threatTag: 'BENIGN',
+    badge: 'Verified Clean',
     senderName: 'Alex Rivera (Engineering Lead)',
     senderEmail: 'alex.rivera@techcorp.com',
     subject: 'Sprint Planning & Architecture Review - Thursday 2:00 PM EST',
@@ -105,7 +131,8 @@ Lead Software Architect | TechCorp Systems`,
     id: 'legitimate-github-notification',
     name: 'GitHub - Dependabot Security Advisory',
     type: 'legitimate',
-    badge: 'Legitimate & Safe',
+    threatTag: 'BENIGN',
+    badge: 'Verified Clean',
     senderName: 'GitHub Support',
     senderEmail: 'notifications@github.com',
     subject: '[GitHub] Dependabot alert resolved: CVE-2026-1128 in mini-project repository',
