@@ -47,7 +47,7 @@ export default function ScenarioPills({ selectedPresetId, onSelectSample }) {
         </span>
       </div>
 
-      <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-2.5">
         {sampleEmails.map((sample) => {
           const isSelected = selectedPresetId === sample.id;
           const tagInfo = getTagBadge(sample.threatTag || (sample.type === 'phishing' ? 'CRITICAL' : 'BENIGN'));
@@ -57,19 +57,21 @@ export default function ScenarioPills({ selectedPresetId, onSelectSample }) {
             <button
               key={sample.id}
               onClick={() => onSelectSample(sample)}
-              className={`group relative flex items-center space-x-2.5 px-3 py-2 rounded-xl text-xs font-medium border transition-all duration-200 whitespace-nowrap shrink-0 shadow-xs cursor-pointer ${
+              className={`group relative flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-medium border transition-all duration-200 whitespace-nowrap shadow-xs cursor-pointer ${
                 isSelected
                   ? 'bg-blue-600 text-white border-blue-600 shadow-md shadow-blue-500/30 ring-2 ring-blue-500/40'
                   : `bg-white dark:bg-[#111728] text-slate-800 dark:text-slate-200 border-slate-300 dark:border-slate-700 ${tagInfo.hoverBorder} ${tagInfo.glow} hover:-translate-y-0.5 hover:dark:bg-[#151D33] hover:dark:border-slate-600`
               }`}
             >
-              {/* Dot indicator */}
-              <span className={`w-2 h-2 rounded-full shrink-0 ${isSelected ? 'bg-white' : tagInfo.dot}`} />
+              <div className="flex items-center space-x-2 truncate">
+                {/* Dot indicator */}
+                <span className={`w-2 h-2 rounded-full shrink-0 ${isSelected ? 'bg-white' : tagInfo.dot}`} />
 
-              {/* Sample Title */}
-              <span className="font-semibold text-xs tracking-tight">
-                {sample.name.split(' - ')[0]}
-              </span>
+                {/* Sample Title */}
+                <span className="font-semibold text-xs tracking-tight truncate">
+                  {sample.name.split(' - ')[0]}
+                </span>
+              </div>
 
               {/* Threat Tag Badge */}
               <span className={`text-[10px] font-mono font-extrabold px-1.5 py-0.5 rounded-md border flex items-center space-x-1 ${

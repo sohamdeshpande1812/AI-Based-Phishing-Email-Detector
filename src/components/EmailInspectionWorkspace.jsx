@@ -201,14 +201,14 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
         onSelectSample={handleSelectPreset}
       />
 
-      {/* 2-Column Responsive Workspace Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      {/* 2-Column Responsive Workspace Grid (Symmetric 50/50 Balance) */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
         
         {/* ============================================================== */}
-        {/* LEFT COLUMN: ENVELOPE & PAYLOAD INSPECTION FORM (7 Cols)       */}
+        {/* LEFT COLUMN: ENVELOPE & PAYLOAD INSPECTION FORM (50% Width)    */}
         {/* ============================================================== */}
-        <div className="lg:col-span-7 flex flex-col space-y-4">
-          <div className="rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-300 dark:border-slate-700 shadow-xl overflow-hidden transition-all duration-300 cyber-bento-card relative group shadow-slate-900/5 dark:shadow-black/50">
+        <div className="lg:col-span-1 flex flex-col h-full space-y-4">
+          <div className="rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-300 dark:border-slate-700 shadow-xl overflow-hidden transition-all duration-300 cyber-bento-card relative group shadow-slate-900/5 dark:shadow-black/50 flex flex-col justify-between h-full">
             
             {/* Horizontal Cyber Scanline Sweep */}
             <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500/80 to-transparent scanline-bar pointer-events-none opacity-40 group-hover:opacity-100 transition-opacity" />
@@ -342,11 +342,11 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
 
                     <textarea
                       ref={textareaRef}
-                      rows={10}
+                      rows={7}
                       value={emailData.body || ''}
                       onChange={(e) => setEmailData({ ...emailData, body: e.target.value })}
                       placeholder="Paste raw or complete email body here..."
-                      className="w-full p-3.5 bg-transparent text-slate-900 dark:text-white text-xs sm:text-sm font-mono leading-relaxed placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none resize-y"
+                      className="w-full p-3.5 bg-transparent text-slate-900 dark:text-white text-xs sm:text-sm font-mono leading-relaxed placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none resize-y min-h-[170px]"
                     />
                   </div>
 
@@ -415,10 +415,10 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
         </div>
 
         {/* ============================================================== */}
-        {/* RIGHT COLUMN: THREAT TELEMETRY & VERDICT VIEWPORT (5 Cols)     */}
+        {/* RIGHT COLUMN: THREAT TELEMETRY & VERDICT VIEWPORT (50% Width)  */}
         {/* ============================================================== */}
-        <div className="lg:col-span-5 flex flex-col space-y-4">
-          <div className="rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-300 dark:border-slate-700 shadow-xl overflow-hidden min-h-[580px] flex flex-col justify-between transition-all duration-300 cyber-bento-card relative shadow-slate-900/5 dark:shadow-black/50">
+        <div className="lg:col-span-1 flex flex-col h-full space-y-4">
+          <div className="rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-300 dark:border-slate-700 shadow-xl overflow-hidden flex flex-col justify-between transition-all duration-300 cyber-bento-card relative shadow-slate-900/5 dark:shadow-black/50 h-full">
             
             {/* Viewport Header with Live Active Radar Icon */}
             <div className="px-5 py-3.5 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between bg-slate-50/80 dark:bg-[#121B30]">
