@@ -85,7 +85,7 @@ export default function HeroBanner() {
           return (
             <div
               key={idx}
-              className="relative overflow-hidden rounded-2xl bg-white/85 dark:bg-[#0F172A]/85 backdrop-blur-md border border-slate-200/80 dark:border-white/10 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 dark:hover:border-blue-400/40 hover:shadow-xl hover:shadow-blue-500/10 group cyber-bento-card cursor-default select-none"
+              className="relative overflow-hidden rounded-2xl bg-white/90 dark:bg-gradient-to-b dark:from-[#12192B] dark:to-[#0B0F1A] backdrop-blur-md border border-slate-200/90 dark:border-slate-800 p-4.5 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 dark:hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 group cyber-bento-card cursor-default select-none shadow-md shadow-slate-900/5 dark:shadow-black/40"
             >
               {/* Subtle card top gradient glow */}
               <div className={`absolute -top-12 -right-12 w-28 h-28 bg-gradient-to-br ${stat.bgGlow} rounded-full blur-2xl pointer-events-none opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500`} />
@@ -93,11 +93,11 @@ export default function HeroBanner() {
               {/* Subtle bottom-edge hairline neon highlight on hover */}
               <div className="absolute inset-x-0 bottom-0 h-[1.5px] bg-gradient-to-r from-transparent via-blue-500/0 to-transparent group-hover:via-blue-500/50 dark:group-hover:via-blue-400/60 transition-all duration-500" />
 
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between mb-2.5">
                 <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold truncate">
                   {stat.title}
                 </span>
-                <div className={`p-1.5 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/5 ${stat.color} group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
+                <div className={`p-2 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 ${stat.color} group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shadow-xs`}>
                   <Icon className="w-3.5 h-3.5" />
                 </div>
               </div>
@@ -108,11 +108,11 @@ export default function HeroBanner() {
                 </div>
               </div>
 
-              <div className="mt-1 flex items-center justify-between text-[11px]">
-                <span className="text-slate-500 dark:text-slate-400 truncate">
+              <div className="mt-1.5 flex items-center justify-between text-[11px]">
+                <span className="text-slate-600 dark:text-slate-300 truncate font-medium">
                   {stat.label}
                 </span>
-                <span className={`font-mono font-medium ${stat.color} text-[10px]`}>
+                <span className={`font-mono font-semibold ${stat.color} text-[10px]`}>
                   {stat.trend}
                 </span>
               </div>

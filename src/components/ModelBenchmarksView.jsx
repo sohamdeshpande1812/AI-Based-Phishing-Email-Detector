@@ -212,10 +212,10 @@ export default function ModelBenchmarksView({ activeModel, onSelectModel }) {
             return (
               <div
                 key={model.model_id}
-                className={`relative rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border transition-all duration-300 overflow-hidden flex flex-col justify-between p-5 shadow-xl cyber-bento-card ${
+                className={`relative rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border transition-all duration-300 overflow-hidden flex flex-col justify-between p-5 shadow-xl cyber-bento-card ${
                   isSelected 
-                    ? 'border-blue-500 ring-2 ring-blue-500/30 shadow-blue-500/10' 
-                    : 'border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/20'
+                    ? 'border-blue-500 ring-2 ring-blue-500/30 shadow-blue-500/20' 
+                    : 'border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
                 }`}
               >
                 {/* Active Indicator Ribbon */}
@@ -243,7 +243,7 @@ export default function ModelBenchmarksView({ activeModel, onSelectModel }) {
                   </div>
 
                   {/* Primary Accuracy & Latency Hero Metrics */}
-                  <div className="grid grid-cols-2 gap-2 p-3 rounded-xl bg-slate-50 dark:bg-[#090D16] border border-slate-200 dark:border-white/5 mb-4">
+                  <div className="grid grid-cols-2 gap-2 p-3 rounded-xl bg-slate-50 dark:bg-[#080D1A] border border-slate-200 dark:border-slate-800 mb-4">
                     <div>
                       <span className="text-[10px] font-mono uppercase text-slate-500 font-semibold">Test Accuracy</span>
                       <div className="text-2xl font-extrabold font-mono text-emerald-500 tracking-tight mt-0.5">
@@ -377,9 +377,9 @@ export default function ModelBenchmarksView({ activeModel, onSelectModel }) {
       {/* ==================================================================== */}
       {/* 3. CONFUSION MATRIX, ROC CURVES & CHARTS EXPLORER                     */}
       {/* ==================================================================== */}
-      <div className="rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 p-5 sm:p-6 shadow-xl space-y-5">
+      <div className="rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-200 dark:border-slate-800 p-5 sm:p-6 shadow-xl space-y-5 cyber-bento-card">
         
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-200 dark:border-white/10">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-slate-200 dark:border-slate-800/80">
           <div>
             <h2 className="text-sm font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center space-x-2">
               <BarChart2 className="w-4 h-4 text-blue-500" />

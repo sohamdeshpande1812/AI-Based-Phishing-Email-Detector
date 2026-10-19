@@ -229,65 +229,64 @@ export default function CorpusAnalyticsView() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* Total Volume */}
-        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl space-y-1 cyber-bento-card">
+        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-200/90 dark:border-slate-800 shadow-xl space-y-1 cyber-bento-card">
           <div className="flex items-center justify-between text-slate-500">
-            <span className="text-[11px] font-mono font-bold uppercase tracking-wider">Total Corpus Volume</span>
+            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Total Corpus Volume</span>
             <Database className="w-4 h-4 text-blue-500" />
           </div>
           <div className="text-3xl font-extrabold font-mono text-slate-900 dark:text-white">
             {corpusStats.totalEmails}
           </div>
-          <p className="text-xs text-slate-500 font-sans">
+          <p className="text-xs text-slate-600 dark:text-slate-300 font-sans">
             Verified raw email envelopes and full payloads
           </p>
         </div>
 
         {/* Phishing Distribution */}
-        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl space-y-1 cyber-bento-card">
+        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-200/90 dark:border-slate-800 shadow-xl space-y-1 cyber-bento-card">
           <div className="flex items-center justify-between text-slate-500">
-            <span className="text-[11px] font-mono font-bold uppercase tracking-wider">Phishing Samples</span>
+            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Phishing Samples</span>
             <ShieldAlert className="w-4 h-4 text-rose-500" />
           </div>
           <div className="text-3xl font-extrabold font-mono text-rose-500">
             {corpusStats.phishingCount}
           </div>
-          <p className="text-xs text-slate-500 font-sans">
+          <p className="text-xs text-slate-600 dark:text-slate-300 font-sans">
             {corpusStats.phishingPct}% adversarial attack distribution
           </p>
         </div>
 
         {/* Legitimate Distribution */}
-        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl space-y-1 cyber-bento-card">
+        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-200/90 dark:border-slate-800 shadow-xl space-y-1 cyber-bento-card">
           <div className="flex items-center justify-between text-slate-500">
-            <span className="text-[11px] font-mono font-bold uppercase tracking-wider">Legitimate Control</span>
+            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Legitimate Control</span>
             <ShieldCheck className="w-4 h-4 text-emerald-500" />
           </div>
           <div className="text-3xl font-extrabold font-mono text-emerald-500">
             {corpusStats.legitimateCount}
           </div>
-          <p className="text-xs text-slate-500 font-sans">
+          <p className="text-xs text-slate-600 dark:text-slate-300 font-sans">
             {corpusStats.legitimatePct}% balanced benign control baseline
           </p>
         </div>
 
         {/* Unseen Holdout */}
-        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl space-y-1 cyber-bento-card">
+        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-200/90 dark:border-slate-800 shadow-xl space-y-1 cyber-bento-card">
           <div className="flex items-center justify-between text-slate-500">
-            <span className="text-[11px] font-mono font-bold uppercase tracking-wider">Zero-Day Holdout</span>
+            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Zero-Day Holdout</span>
             <Filter className="w-4 h-4 text-amber-500" />
           </div>
           <div className="text-3xl font-extrabold font-mono text-amber-500">
             9,000
           </div>
-          <p className="text-xs text-slate-500 font-sans">
+          <p className="text-xs text-slate-600 dark:text-slate-300 font-sans">
             15% strictly unseen test split (seed 42)
           </p>
         </div>
-
       </div>
 
       {/* Sleek Class Balance Progress Bar */}
-      <div className="p-4 rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl space-y-2">
+      <div className="p-4 rounded-2xl bg-white/95 dark:bg-[#0E1526] backdrop-blur-md border border-slate-200/90 dark:border-slate-800 shadow-xl space-y-2">
         <div className="flex items-center justify-between text-xs font-mono">
           <span className="flex items-center space-x-1.5 text-rose-500 font-bold">
             <span className="w-2 h-2 rounded-full bg-rose-500" />

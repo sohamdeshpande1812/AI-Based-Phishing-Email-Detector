@@ -98,7 +98,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 dark:bg-[#090D16] text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-blue-600 selection:text-white transition-colors duration-200 relative overflow-x-hidden">
+    <div className="min-h-screen bg-slate-100 dark:bg-[#07090E] text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-blue-600 selection:text-white transition-colors duration-200 relative overflow-x-hidden">
       
       {/* Interactive Ambient Cyber Background */}
       <CyberBackground />
