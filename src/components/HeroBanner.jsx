@@ -85,7 +85,7 @@ export default function HeroBanner() {
           return (
             <div
               key={idx}
-              className="relative overflow-hidden rounded-2xl bg-white/90 dark:bg-gradient-to-b dark:from-[#12192B] dark:to-[#0B0F1A] backdrop-blur-md border border-slate-200/90 dark:border-slate-800 p-4.5 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 dark:hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 group cyber-bento-card cursor-default select-none shadow-md shadow-slate-900/5 dark:shadow-black/40"
+              className="relative overflow-hidden rounded-2xl bg-white dark:bg-gradient-to-b dark:from-[#12192B] dark:to-[#0B0F1A] backdrop-blur-md border border-slate-200 dark:border-slate-800 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 dark:hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 group cyber-bento-card cursor-default select-none shadow-md shadow-slate-900/5 dark:shadow-black/40 flex flex-col justify-between min-h-[118px]"
             >
               {/* Subtle card top gradient glow */}
               <div className={`absolute -top-12 -right-12 w-28 h-28 bg-gradient-to-br ${stat.bgGlow} rounded-full blur-2xl pointer-events-none opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500`} />

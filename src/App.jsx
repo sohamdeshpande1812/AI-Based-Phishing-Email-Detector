@@ -17,7 +17,7 @@ export default function App() {
   
   // Theme state: default to enterprise dark mode
   const [theme, setTheme] = useState(() => {
-    const saved = localStorage.getItem('phishshield_theme');
+    const saved = localStorage.getItem('phishshield_theme_v2');
     if (saved) return saved;
     return 'dark';
   });
@@ -29,7 +29,7 @@ export default function App() {
     } else {
       root.classList.remove('dark');
     }
-    localStorage.setItem('phishshield_theme', theme);
+    localStorage.setItem('phishshield_theme_v2', theme);
   }, [theme]);
 
   const handleToggleTheme = () => {
@@ -98,7 +98,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 dark:bg-[#07090E] text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-blue-600 selection:text-white transition-colors duration-200 relative overflow-x-hidden">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#07090E] text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-blue-600 selection:text-white transition-colors duration-200 relative overflow-x-hidden">
       
       {/* Interactive Ambient Cyber Background */}
       <CyberBackground />
