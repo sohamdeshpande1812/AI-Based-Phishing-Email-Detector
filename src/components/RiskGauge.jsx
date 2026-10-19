@@ -1,15 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function RiskGauge({ score = 0, verdict = 'phishing', confidence = 95 }) {
+  const [animatedScore, setAnimatedScore] = useState(0);
+  const [countDisplay, setCountDisplay] = useState(0);
+
+  useEffect(() => {
+    setAnimatedScore(0);
+    const startTimeout = setTimeout(() => {
+      setAnimatedScore(score);
+    }, 40);
+
+    const target = Math.min(100, Math.max(0, score));
+    const duration = 750;
+    const startTime = performance.now();
+    let frameId;
+
+    const animateCount = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(1, elapsed / duration);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      setCountDisplay(Math.round(ease * target));
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(animateCount);
+      }
+    };
+
+    frameId = requestAnimationFrame(animateCount);
+
+    return () => {
+      clearTimeout(startTimeout);
+      cancelAnimationFrame(frameId);
+    };
+  }, [score]);
+
   const isPhishing = verdict === 'phishing' || score >= 60;
   const isSuspicious = verdict === 'suspicious' || (score >= 30 && score < 60);
 
   const strokeColor = isPhishing ? '#F43F5E' : isSuspicious ? '#F59E0B' : '#10B981';
   const glowFilter = isPhishing 
-    ? 'drop-shadow(0 0 8px rgba(244, 63, 94, 0.45))' 
+    ? 'drop-shadow(0 0 10px rgba(244, 63, 94, 0.55))' 
     : isSuspicious 
-    ? 'drop-shadow(0 0 8px rgba(245, 158, 11, 0.45))' 
-    : 'drop-shadow(0 0 8px rgba(16, 185, 129, 0.45))';
+    ? 'drop-shadow(0 0 10px rgba(245, 158, 11, 0.55))' 
+    : 'drop-shadow(0 0 10px rgba(16, 185, 129, 0.55))';
 
   const textColor = isPhishing 
     ? 'text-rose-600 dark:text-rose-400' 
@@ -21,7 +54,7 @@ export default function RiskGauge({ score = 0, verdict = 'phishing', confidence 
 
   const radius = 52;
   const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (Math.min(100, Math.max(0, score)) / 100) * circumference;
+  const strokeDashoffset = circumference - (Math.min(100, Math.max(0, animatedScore)) / 100) * circumference;
 
   return (
     <div className="flex items-center space-x-4 p-2">
@@ -50,15 +83,15 @@ export default function RiskGauge({ score = 0, verdict = 'phishing', confidence 
             fill="transparent"
             style={{
               filter: glowFilter,
-              transition: 'stroke-dashoffset 0.9s cubic-bezier(0.4, 0, 0.2, 1)'
+              transition: 'stroke-dashoffset 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
             }}
           />
         </svg>
 
         {/* Center Percentage & Label */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <span className={`text-2xl font-extrabold font-mono tracking-tight ${textColor}`}>
-            {score}%
+          <span className={`text-2xl font-extrabold font-mono tracking-tight ${textColor} transition-colors`}>
+            {countDisplay}%
           </span>
           <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">
             PROBABILITY

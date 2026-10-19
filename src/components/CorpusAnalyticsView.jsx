@@ -229,7 +229,7 @@ export default function CorpusAnalyticsView() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* Total Volume */}
-        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl space-y-1">
+        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl space-y-1 cyber-bento-card">
           <div className="flex items-center justify-between text-slate-500">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider">Total Corpus Volume</span>
             <Database className="w-4 h-4 text-blue-500" />
@@ -243,7 +243,7 @@ export default function CorpusAnalyticsView() {
         </div>
 
         {/* Phishing Distribution */}
-        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl space-y-1">
+        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl space-y-1 cyber-bento-card">
           <div className="flex items-center justify-between text-slate-500">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider">Phishing Samples</span>
             <ShieldAlert className="w-4 h-4 text-rose-500" />
@@ -257,7 +257,7 @@ export default function CorpusAnalyticsView() {
         </div>
 
         {/* Legitimate Distribution */}
-        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl space-y-1">
+        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl space-y-1 cyber-bento-card">
           <div className="flex items-center justify-between text-slate-500">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider">Legitimate Control</span>
             <ShieldCheck className="w-4 h-4 text-emerald-500" />
@@ -271,7 +271,7 @@ export default function CorpusAnalyticsView() {
         </div>
 
         {/* Unseen Holdout */}
-        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl space-y-1">
+        <div className="p-5 rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl space-y-1 cyber-bento-card">
           <div className="flex items-center justify-between text-slate-500">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider">Zero-Day Holdout</span>
             <Filter className="w-4 h-4 text-amber-500" />

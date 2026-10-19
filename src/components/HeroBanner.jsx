@@ -85,22 +85,25 @@ export default function HeroBanner() {
           return (
             <div
               key={idx}
-              className={`relative overflow-hidden rounded-2xl bg-white/80 dark:bg-[#0F172A]/80 backdrop-blur-md border border-slate-200/80 dark:border-white/10 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl hover:border-slate-300 dark:hover:border-white/20 group`}
+              className="relative overflow-hidden rounded-2xl bg-white/85 dark:bg-[#0F172A]/85 backdrop-blur-md border border-slate-200/80 dark:border-white/10 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40 dark:hover:border-blue-400/40 hover:shadow-xl hover:shadow-blue-500/10 group cyber-bento-card cursor-default select-none"
             >
               {/* Subtle card top gradient glow */}
-              <div className={`absolute -top-12 -right-12 w-28 h-28 bg-gradient-to-br ${stat.bgGlow} rounded-full blur-2xl pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity`} />
+              <div className={`absolute -top-12 -right-12 w-28 h-28 bg-gradient-to-br ${stat.bgGlow} rounded-full blur-2xl pointer-events-none opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500`} />
+              
+              {/* Subtle bottom-edge hairline neon highlight on hover */}
+              <div className="absolute inset-x-0 bottom-0 h-[1.5px] bg-gradient-to-r from-transparent via-blue-500/0 to-transparent group-hover:via-blue-500/50 dark:group-hover:via-blue-400/60 transition-all duration-500" />
 
               <div className="flex items-center justify-between mb-2">
                 <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold truncate">
                   {stat.title}
                 </span>
-                <div className={`p-1.5 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/5 ${stat.color}`}>
+                <div className={`p-1.5 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/5 ${stat.color} group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
                   <Icon className="w-3.5 h-3.5" />
                 </div>
               </div>
 
               <div className="flex items-baseline space-x-2">
-                <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight font-mono">
+                <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight font-mono group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {stat.value}
                 </div>
               </div>

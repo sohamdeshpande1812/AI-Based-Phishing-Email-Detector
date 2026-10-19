@@ -212,7 +212,7 @@ export default function ModelBenchmarksView({ activeModel, onSelectModel }) {
             return (
               <div
                 key={model.model_id}
-                className={`relative rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border transition-all duration-200 overflow-hidden flex flex-col justify-between p-5 shadow-xl ${
+                className={`relative rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border transition-all duration-300 overflow-hidden flex flex-col justify-between p-5 shadow-xl cyber-bento-card ${
                   isSelected 
                     ? 'border-blue-500 ring-2 ring-blue-500/30 shadow-blue-500/10' 
                     : 'border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/20'

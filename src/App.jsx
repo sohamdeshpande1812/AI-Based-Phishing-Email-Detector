@@ -6,6 +6,7 @@ import ResultDashboard from './components/ResultDashboard';
 import ModelBenchmarksView from './components/ModelBenchmarksView';
 import CorpusAnalyticsView from './components/CorpusAnalyticsView';
 import BackendConfigModal from './components/BackendConfigModal';
+import CyberBackground from './components/CyberBackground';
 import Footer from './components/Footer';
 import { sampleEmails } from './data/sampleEmails';
 import { runEmailAnalysis, getBackendConfig, saveBackendConfig } from './services/apiService';
@@ -97,8 +98,11 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 dark:bg-[#090D16] text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-blue-600 selection:text-white transition-colors duration-200 cyber-glow-bg cyber-grid-pattern">
+    <div className="min-h-screen bg-slate-100 dark:bg-[#090D16] text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-blue-600 selection:text-white transition-colors duration-200 relative overflow-x-hidden">
       
+      {/* Interactive Ambient Cyber Background */}
+      <CyberBackground />
+
       {/* Enterprise Top Navigation Bar */}
       <Navbar
         currentTab={currentTab}
@@ -112,42 +116,44 @@ export default function App() {
         onToggleTheme={handleToggleTheme}
       />
 
-      {/* Main Workspace Area */}
-      <main className="flex-1 pb-12">
-        {currentTab === 'scanner' && (
-          viewMode === 'full-dashboard' && analysisResult ? (
-            <ResultDashboard
-              result={analysisResult}
-              emailData={emailData}
-              onResetScan={handleReset}
-            />
-          ) : (
-            <div className="space-y-4">
-              <HeroBanner />
-              <EmailInspectionWorkspace
+      {/* Main Workspace Area with Staggered View Transition */}
+      <main className="flex-1 pb-12 relative z-10">
+        <div key={currentTab} className="animate-fade-slide-up">
+          {currentTab === 'scanner' && (
+            viewMode === 'full-dashboard' && analysisResult ? (
+              <ResultDashboard
+                result={analysisResult}
                 emailData={emailData}
-                setEmailData={setEmailData}
-                onAnalyze={handleAnalyze}
-                isScanning={isScanning}
-                analysisResult={analysisResult}
-                onSelectSample={handleSelectSample}
                 onResetScan={handleReset}
-                activeModel={activeModel}
               />
-            </div>
-          )
-        )}
+            ) : (
+              <div className="space-y-4">
+                <HeroBanner />
+                <EmailInspectionWorkspace
+                  emailData={emailData}
+                  setEmailData={setEmailData}
+                  onAnalyze={handleAnalyze}
+                  isScanning={isScanning}
+                  analysisResult={analysisResult}
+                  onSelectSample={handleSelectSample}
+                  onResetScan={handleReset}
+                  activeModel={activeModel}
+                />
+              </div>
+            )
+          )}
 
-        {currentTab === 'benchmarks' && (
-          <ModelBenchmarksView
-            activeModel={activeModel}
-            onSelectModel={handleSelectModel}
-          />
-        )}
+          {currentTab === 'benchmarks' && (
+            <ModelBenchmarksView
+              activeModel={activeModel}
+              onSelectModel={handleSelectModel}
+            />
+          )}
 
-        {currentTab === 'corpus' && (
-          <CorpusAnalyticsView />
-        )}
+          {currentTab === 'corpus' && (
+            <CorpusAnalyticsView />
+          )}
+        </div>
       </main>
 
       {/* Backend Settings Modal */}

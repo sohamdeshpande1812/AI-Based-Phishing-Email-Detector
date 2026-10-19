@@ -51,6 +51,26 @@ export default function EmailInspectionWorkspace({
   const [expandedVector, setExpandedVector] = useState('urgency'); // default open vector
   const [modalView, setModalView] = useState(null); // 'xray' | 'remediation' | 'json' | null
   const [copiedReport, setCopiedReport] = useState(false);
+  const [activeScanStep, setActiveScanStep] = useState(0);
+
+  const scanSteps = [
+    { label: 'Sender DKIM / SPF Alignment', desc: 'Verifying origin authenticity, reverse DNS & typosquatting', progress: 22 },
+    { label: 'Hyperlink & Payload Sandboxing', desc: 'Parsing embedded URLs, redirect chains & high-risk TLDs', progress: 48 },
+    { label: 'Coercion & Urgency NLP Vectors', desc: 'Scoring emotional manipulation, deadline coercion & harvesting cues', progress: 74 },
+    { label: 'Deep Neural & Transformer Inference', desc: 'Executing BERT multi-head attention and Bi-LSTM classification', progress: 92 },
+    { label: 'Telemetry Aggregation & IOC Verdict', desc: 'Synthesizing multi-model confidence, severity score & explanation', progress: 100 }
+  ];
+
+  useEffect(() => {
+    if (!isScanning) {
+      setActiveScanStep(0);
+      return;
+    }
+    const interval = setInterval(() => {
+      setActiveScanStep((prev) => (prev < scanSteps.length - 1 ? prev + 1 : prev));
+    }, 650);
+    return () => clearInterval(interval);
+  }, [isScanning]);
 
   const textareaRef = useRef(null);
 
@@ -187,8 +207,11 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
         {/* LEFT COLUMN: ENVELOPE & PAYLOAD INSPECTION FORM (7 Cols)       */}
         {/* ============================================================== */}
         <div className="lg:col-span-7 flex flex-col space-y-4">
-          <div className="rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl overflow-hidden transition-all duration-200">
+          <div className="rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl overflow-hidden transition-all duration-300 cyber-bento-card relative group">
             
+            {/* Horizontal Cyber Scanline Sweep */}
+            <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500/80 to-transparent scanline-bar pointer-events-none opacity-40 group-hover:opacity-100 transition-opacity" />
+
             {/* Header: Envelope & Payload */}
             <div className="px-5 py-3.5 border-b border-slate-200 dark:border-white/10 flex items-center justify-between bg-slate-50/80 dark:bg-slate-900/60">
               <div className="flex items-center space-x-3">
@@ -394,14 +417,20 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
         {/* RIGHT COLUMN: THREAT TELEMETRY & VERDICT VIEWPORT (5 Cols)     */}
         {/* ============================================================== */}
         <div className="lg:col-span-5 flex flex-col space-y-4">
-          <div className="rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl overflow-hidden min-h-[580px] flex flex-col justify-between transition-all duration-200">
+          <div className="rounded-2xl bg-white/95 dark:bg-[#0F172A]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 shadow-xl overflow-hidden min-h-[580px] flex flex-col justify-between transition-all duration-300 cyber-bento-card relative">
             
-            {/* Viewport Header */}
+            {/* Viewport Header with Live Active Radar Icon */}
             <div className="px-5 py-3.5 border-b border-slate-200 dark:border-white/10 flex items-center justify-between bg-slate-50/80 dark:bg-slate-900/60">
-              <div className="flex items-center space-x-2">
-                <Activity className="w-4 h-4 text-emerald-500" />
-                <h3 className="text-sm font-extrabold text-slate-900 dark:text-white tracking-tight">
-                  Threat Telemetry & Verdict
+              <div className="flex items-center space-x-2.5">
+                <div className="relative flex items-center justify-center">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]" />
+                  <span className="animate-ping absolute w-4 h-4 rounded-full bg-emerald-400 opacity-60 duration-1000" />
+                </div>
+                <h3 className="text-sm font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center space-x-2">
+                  <span>Threat Telemetry & Verdict</span>
+                  <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                    LIVE HUD
+                  </span>
                 </h3>
               </div>
 
@@ -431,45 +460,81 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
             {/* Viewport Dynamic Content: Standby vs Scanning vs Scanned */}
             <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
               
-              {/* STATE 1: SCANNING (Animated Radar Sweep & Skeleton Progress) */}
+              {/* STATE 1: SCANNING (Animated Radar Sweep & High-Tech Step Pipeline) */}
               {isScanning && (
-                <div className="flex-1 flex flex-col items-center justify-center py-8 space-y-6 animate-in fade-in duration-200">
+                <div className="flex-1 flex flex-col items-center justify-center py-6 space-y-5 animate-in fade-in duration-200">
                   
-                  {/* Cyber Radar Graphic with Sweep */}
-                  <div className="relative w-44 h-44 rounded-full border border-blue-500/20 flex items-center justify-center">
+                  {/* Cyber Radar Graphic with High-Speed Sweep */}
+                  <div className="relative w-44 h-44 rounded-full border border-blue-500/30 flex items-center justify-center bg-blue-950/20 shadow-[0_0_30px_rgba(59,130,246,0.15)]">
                     {/* Concentric rings */}
-                    <div className="absolute inset-4 rounded-full border border-blue-500/15" />
-                    <div className="absolute inset-10 rounded-full border border-blue-500/10" />
-                    <div className="absolute inset-16 rounded-full border border-blue-500/10" />
+                    <div className="absolute inset-3 rounded-full border border-blue-500/20" />
+                    <div className="absolute inset-8 rounded-full border border-blue-500/15" />
+                    <div className="absolute inset-14 rounded-full border border-blue-500/15" />
+                    <div className="absolute inset-20 rounded-full border border-blue-500/10" />
                     <div className="absolute inset-0 rounded-full radar-sweep-cone pointer-events-none" />
                     
-                    {/* Center pulsing radar dot */}
+                    {/* Crosshairs */}
+                    <div className="absolute inset-x-0 top-1/2 h-px bg-blue-500/20 -translate-y-1/2" />
+                    <div className="absolute inset-y-0 left-1/2 w-px bg-blue-500/20 -translate-x-1/2" />
+
+                    {/* Center pulsing radar core */}
                     <div className="relative z-10 w-3 h-3 rounded-full bg-blue-500 shadow-lg shadow-blue-500/50 animate-ping" />
                     <div className="absolute z-10 w-2.5 h-2.5 rounded-full bg-blue-400" />
                   </div>
 
-                  <div className="text-center space-y-2 max-w-xs">
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 animate-pulse">
-                      Processing Zero-Day Heuristics...
-                    </span>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                      Tokenizing email payload, matching BERT attention vectors, and scoring domain spoofing likelihood.
+                  <div className="text-center space-y-1.5 max-w-sm">
+                    <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-mono font-bold tracking-wider uppercase">
+                      <span className="w-2 h-2 rounded-full bg-blue-500 animate-ping" />
+                      <span>{scanSteps[activeScanStep].label}...</span>
+                    </div>
+                    <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400 min-h-[18px] transition-all">
+                      {scanSteps[activeScanStep].desc}
                     </p>
                   </div>
 
-                  {/* Skeleton Progress Pills */}
+                  {/* High-Tech Dynamic Progress Pipeline */}
                   <div className="w-full space-y-2 font-mono text-[11px]">
-                    <div className="flex items-center justify-between p-2 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/5">
-                      <span className="text-slate-500">Heuristic Urgency Scanner</span>
-                      <span className="text-emerald-500 font-bold">ANALYZING</span>
+                    <div className="w-full bg-slate-200 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                      <div 
+                        className="h-full bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-400 transition-all duration-500 ease-out shadow-[0_0_8px_#38bdf8]"
+                        style={{ width: `${scanSteps[activeScanStep].progress}%` }}
+                      />
                     </div>
-                    <div className="flex items-center justify-between p-2 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/5">
-                      <span className="text-slate-500">URL Sandboxing & TLD Check</span>
-                      <span className="text-blue-500 font-bold">DETONATING</span>
-                    </div>
-                    <div className="flex items-center justify-between p-2 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-white/5">
-                      <span className="text-slate-500">Neural Classifier Inference</span>
-                      <span className="text-amber-500 font-bold">EVALUATING</span>
+
+                    <div className="space-y-1.5 pt-1">
+                      {scanSteps.map((step, idx) => {
+                        const isDone = idx < activeScanStep;
+                        const isCurrent = idx === activeScanStep;
+
+                        return (
+                          <div 
+                            key={idx}
+                            className={`flex items-center justify-between p-2 rounded-lg border transition-all ${
+                              isCurrent
+                                ? 'bg-blue-500/10 border-blue-500/30 text-blue-600 dark:text-blue-400 shadow-sm'
+                                : isDone
+                                ? 'bg-slate-50 dark:bg-slate-900/50 border-slate-200/60 dark:border-white/5 text-slate-700 dark:text-slate-300'
+                                : 'bg-transparent border-transparent text-slate-400 dark:text-slate-600 opacity-60'
+                            }`}
+                          >
+                            <span className="flex items-center space-x-2">
+                              {isDone ? (
+                                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                              ) : isCurrent ? (
+                                <Loader2 className="w-3.5 h-3.5 text-blue-500 animate-spin shrink-0" />
+                              ) : (
+                                <span className="w-3.5 h-3.5 rounded-full border border-slate-400 dark:border-slate-700 inline-block shrink-0" />
+                              )}
+                              <span>{step.label}</span>
+                            </span>
+                            <span className={`text-[10px] font-bold ${
+                              isDone ? 'text-emerald-500' : isCurrent ? 'text-blue-500 animate-pulse' : 'text-slate-400'
+                            }`}>
+                              {isDone ? 'PASSED' : isCurrent ? 'INSPECTING' : 'QUEUED'}
+                            </span>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
 
@@ -537,10 +602,10 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
 
               {/* STATE 3: SCANNED (Threat Telemetry & Verdict Viewport) */}
               {!isScanning && analysisResult && (
-                <div className="space-y-4 animate-in fade-in duration-200">
+                <div className="space-y-4">
                   
                   {/* Verdict Executive Banner */}
-                  <div className={`p-4 rounded-xl border transition-all ${
+                  <div className={`p-4 rounded-xl border transition-all animate-fade-slide-up stagger-1 ${
                     isPhishing
                       ? 'bg-rose-500/10 border-rose-500/30 text-rose-500'
                       : isSuspicious
@@ -576,7 +641,7 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
                   </div>
 
                   {/* Verdict Meter & Score Card */}
-                  <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#090D16] border border-slate-200 dark:border-white/10 flex items-center justify-between">
+                  <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#090D16] border border-slate-200 dark:border-white/10 flex items-center justify-between animate-fade-slide-up stagger-2">
                     <RiskGauge 
                       score={analysisResult.score} 
                       verdict={analysisResult.verdict} 
@@ -585,7 +650,7 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
                   </div>
 
                   {/* Vector Breakdown Accordion */}
-                  <div className="space-y-2">
+                  <div className="space-y-2 animate-fade-slide-up stagger-3">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
                         Multi-Vector Threat Breakdown
@@ -652,7 +717,7 @@ Engine: ${analysisResult.engineSource || 'Multi-Model Pipeline'}`;
                   </div>
 
                   {/* Explainability Snippet Card */}
-                  <div className="p-3.5 rounded-xl bg-blue-500/5 border border-blue-500/15 space-y-1.5">
+                  <div className="p-3.5 rounded-xl bg-blue-500/5 border border-blue-500/15 space-y-1.5 animate-fade-slide-up stagger-4">
                     <div className="flex items-center space-x-2 text-xs font-mono font-bold text-blue-600 dark:text-blue-400">
                       <Sparkles className="w-3.5 h-3.5" />
                       <span>AI Threat Rationale & Explainability</span>
