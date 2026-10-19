@@ -18,6 +18,9 @@ export function getBackendConfig() {
   let url = localStorage.getItem(STORAGE_KEYS.BACKEND_URL);
   if (!url || url === 'http://localhost:8001/api/analyze' || url === 'http://localhost:8000/api/analyze' || url === '/api/analyze' || url.trim() === '') {
     url = DEFAULT_BACKEND_URL;
+    try {
+      localStorage.setItem(STORAGE_KEYS.BACKEND_URL, DEFAULT_BACKEND_URL);
+    } catch (_) {}
   }
   const activeModel = localStorage.getItem(STORAGE_KEYS.ACTIVE_MODEL) || 'auto'; // 'auto' | 'rf' | 'bilstm' | 'bert'
   return { mode, url, activeModel };

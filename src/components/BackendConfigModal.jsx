@@ -1,6 +1,13 @@
-import React, { useState } from 'react';
-import { X, Server, Check, AlertCircle, Code } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, Server, Check, AlertCircle, Code, RotateCcw } from 'lucide-react';
 import { testBackendConnection, DEFAULT_BACKEND_URL } from '../services/apiService';
+
+function sanitizeEndpoint(endpoint) {
+  if (!endpoint || endpoint === '/api/analyze' || endpoint === 'http://localhost:8001/api/analyze' || endpoint === 'http://localhost:8000/api/analyze' || endpoint.trim() === '') {
+    return DEFAULT_BACKEND_URL;
+  }
+  return endpoint;
+}
 
 export default function BackendConfigModal({
   isOpen,
@@ -8,11 +15,19 @@ export default function BackendConfigModal({
   backendConfig,
   onSave
 }) {
-  const [mode, setMode] = useState(backendConfig.mode || 'custom');
-  const [url, setUrl] = useState(backendConfig.url || DEFAULT_BACKEND_URL);
+  const [mode, setMode] = useState(backendConfig?.mode || 'custom');
+  const [url, setUrl] = useState(sanitizeEndpoint(backendConfig?.url));
   const [testing, setTesting] = useState(false);
   const [testResult, setTestResult] = useState(null);
   const [activeTab, setActiveTab] = useState('settings'); // 'settings' | 'snippet'
+
+  useEffect(() => {
+    if (isOpen) {
+      setMode(backendConfig?.mode || 'custom');
+      setUrl(sanitizeEndpoint(backendConfig?.url));
+      setTestResult(null);
+    }
+  }, [isOpen, backendConfig]);
 
   if (!isOpen) return null;
 
@@ -139,9 +154,19 @@ export default function BackendConfigModal({
 
               {/* Custom API URL Input */}
               <div className="space-y-2">
-                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
-                  API Endpoint URL
-                </label>
+                <div className="flex items-center justify-between">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
+                    API Endpoint URL
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => { setUrl(DEFAULT_BACKEND_URL); setTestResult(null); }}
+                    className="inline-flex items-center space-x-1 text-[11px] font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+                  >
+                    <RotateCcw className="w-3 h-3" />
+                    <span>Reset to Render Cloud Backend</span>
+                  </button>
+                </div>
                 <div className="flex space-x-2">
                   <input
                     type="url"
